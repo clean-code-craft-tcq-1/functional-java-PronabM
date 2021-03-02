@@ -57,6 +57,6 @@ public class BMSTester {
 	}
 	
 	public void allParamOutsideLimit_Failure() {
-		assert(bms.checkBattery(maxTemp + 1, maxSoc - 1, maxCR + 1)==false);
+		assert(bms.checkBattery(maxTemp + 1, minSoc - 1, maxCR + 1)==false);
 	}
 }

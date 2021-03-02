@@ -11,5 +11,6 @@ public class BMSDriver {
 		tester.socWithinLimit_Success();
 		tester.crAboveLimit_Failure();
 		tester.crWithinLimit_Success();
+		tester.allParamOutsideLimit_Failure();
     }
 }
