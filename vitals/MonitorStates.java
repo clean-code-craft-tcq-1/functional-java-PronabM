@@ -1,9 +1,11 @@
 package vitals;
 
 public enum MonitorStates {
-	TEMP_OUT_OF_RANGE("Temperature is out of range!"),
-	SOC_OUT_OF_RANGE("State of Charge is out of range!"),
-	CR_OUT_OF_RANGE("Charge Rate is out of range!");
+	TEMP("Temperature"),
+	SOC("State of Charge"),
+	CR("Charge Rate"),
+	IS_ABOVE_ALLOWED_LIMIT(" is above allowed limit."),
+	IS_BELOW_ALLOWED_LIMIT(" is below allowed limit");
 	
 	private String displayText;
 	

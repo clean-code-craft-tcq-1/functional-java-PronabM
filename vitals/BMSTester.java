@@ -55,4 +55,8 @@ public class BMSTester {
 		float randomCRWithinRange = random.nextFloat() * (maxCR);
 		assert(bms.checkBattery(maxTemp, maxSoc, randomCRWithinRange)==true);
 	}
+	
+	public void allParamOutsideLimit_Failure() {
+		assert(bms.checkBattery(maxTemp + 1, maxSoc - 1, maxCR + 1)==false);
+	}
 }

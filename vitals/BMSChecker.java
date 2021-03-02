@@ -1,41 +1,31 @@
 package vitals;
 
 import java.util.function.Function;
+import static vitals.MonitorStates.*;
 
 public interface BMSChecker extends Function<BMS, Boolean> {
 	
 	static BMSChecker checkTemp(float temp) {
-		return bms -> {
-			if (checkInRange(temp, bms.getTempLowerLimit(), bms.getTempUpperLimit()))
-				return true;
-			printFailure(MonitorStates.TEMP_OUT_OF_RANGE.toString());
-			return false;
-		};
+		return bms -> checkInRange(TEMP,temp, bms.getTempLowerLimit(), bms.getTempUpperLimit());
 	}
 	
 	static BMSChecker checkSOC(float soc) {
-		return bms -> {
-			if (checkInRange(soc, bms.getSocLowerLimit(), bms.getSocUpperLimit()))
-				return true;
-			printFailure(MonitorStates.SOC_OUT_OF_RANGE.toString());
-			return false;
-		};
+		return bms -> checkInRange(SOC,soc, bms.getSocLowerLimit(), bms.getSocUpperLimit());
 	}
 	
 	static BMSChecker checkChargeRate(float cr) {
-		return bms -> {
-			if (checkInRange(cr, cr, bms.getChargeRateUpperLimit()))
-				return true;
-			printFailure(MonitorStates.CR_OUT_OF_RANGE.toString());
-			return false;
-		};
+		return bms -> checkInRange(CR,cr, cr, bms.getChargeRateUpperLimit());
 	}
 	
 	static void printFailure(String text) {
 		System.out.println(text);
 	}
 	
-	static Boolean checkInRange(float value,float low, float high) {
+	static Boolean checkInRange(MonitorStates state, float value,float low, float high) {
+		if(value<low)
+			printFailure(state.toString() + IS_ABOVE_ALLOWED_LIMIT.toString());
+		else if(value>high)
+			printFailure(state.toString() + IS_BELOW_ALLOWED_LIMIT.toString());
 		return !(low>value || value>high);
 	}
 	

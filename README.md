@@ -29,7 +29,7 @@ We will explore the charging phase of Li-ion batteries to start with.
 
 ## Tasks
 
-1. Reduce the cyclomatic complexity.
+1. Reduce the cyclometric complexity.
 1. Separate pure functions from I/O
 1. Avoid duplication - functions that do nearly the same thing
 1. Complete the tests - cover all conditions.
@@ -56,4 +56,24 @@ Shorten the Semantic distance
 - Procedural to express sequence
 - Functional to express relation between input and output
 - Object oriented to encapsulate state with actions
-- Apect oriented to capture repeating aspects
+- Aspect oriented to capture repeating aspects
+
+## Assignment Approach
+
+As mentioned in the problem statement, 
+
+- the solution should be very much customizable since limits/technology is unpredictable. 
+- In addition, cyclometric complexity reduction and separation of pure functions were also requested.
+- Current feature of notifying whether a parameter is out of range is to be enhanced with whether it is high or low.
+- Finally, test coverage should be improved.
+
+Keeping these points in mind and trying to implement at least a significant part using Functional Paradigm, I approached to the current design.
+
+| Class Name        | Purpose                                                      | Remarks                                                      |
+| ----------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **BMS**           | Wrapper class that allows instantiation with changed limits. | Should help in keeping up with the changing technologies.    |
+| **BMSChecker**    | Validator class holding various methods to validate temp, soc and cr. | Tried to implement using Functional Paradigm.                |
+| **BMSTester**     | Tester class to test the validation results for various situations. | Should increase test coverage.                               |
+| **MonitorStates** | Enum to hold various states of the monitoring process.       | Avoids using hardcoded values directly.                      |
+| **BMSDriver**     | Driver class to execute the testcases.                       | Unnecessary class, had to be created as maven integration was failing. |
+
