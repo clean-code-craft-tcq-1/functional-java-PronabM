@@ -34,6 +34,6 @@ public interface BMSChecker extends Function<BMS, Boolean> {
 	}
 	
 	default BMSChecker and (BMSChecker other) {
-		return bms -> this.apply(bms) ? other.apply(bms) : false;
+		return bms -> this.apply(bms) && other.apply(bms);
 	}
 }
