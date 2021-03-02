@@ -17,4 +17,6 @@ jobs:
       with:
         java-version: 1.8
     - name: Build
-      run: mvn test
+      run: javac vitals/BMSDriver.java
+    - name: Verify
+      run: java -ea -classpath . vitals.BMSDriver
