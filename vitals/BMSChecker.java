@@ -23,11 +23,11 @@ public interface BMSChecker extends Function<BMS, Boolean> {
 	
 	static Boolean checkInRange(MonitorStates state, float value,float low, float high) {
 		if(value<low) {
-			printFailure(state.toString() + IS_ABOVE_ALLOWED_LIMIT.toString());
+			printFailure(state.toString() + IS_BELOW_ALLOWED_LIMIT.toString());
 			return false;
 		}
 		if(value>high) {
-			printFailure(state.toString() + IS_BELOW_ALLOWED_LIMIT.toString());
+			printFailure(state.toString() + IS_ABOVE_ALLOWED_LIMIT.toString());
 			return false;
 		}
 		return true;
